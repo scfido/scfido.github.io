@@ -37,7 +37,7 @@ dotnet user-secrets set connect.qq.appid 123
 dotnet user-secrets set connect.qq.appkey 456
 ```
 
-如果设置参数时遇到这个错误。
+如果设置参数时遇到这个错误。
 ![](/assets/misc/VSCodeUserSecrets/img/2017-12-19-17-54-59.png)
 
 打开项目`.csproj`文件，添加以下内容。
