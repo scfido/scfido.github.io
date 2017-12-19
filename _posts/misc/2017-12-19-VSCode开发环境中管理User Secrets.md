@@ -1,6 +1,6 @@
 ---
    layout: default
-   title: 开发环境中管理User Secrets
+   title: Visual Studio Code开发环境中管理User Secrets
    tags: Git
 ---
 
@@ -9,11 +9,11 @@
 
 # 简介
 
-项目中常常会把一些机密数据以明文写入源代码或者配置文件中，例如数据库连接字符串、登陆用户名密码等，这些信息如果上传到源代码管理器就很难控制知晓范围了，更糟的情况是开源项目把机密信息上传到Github。如何安全的存储这些用户机密信息呢，ASP.NET Core提供SecretManager来管理机密数据。并且Visual Studio还提供了非常便利的工具。从下图可以看出在Web项目点击右键，就可以进入用户机密文件编辑器。
+项目中常常会把一些机密数据以明文写入源代码或者配置文件中，例如数据库连接字符串、登陆用户名密码等，这些信息如果上传到源代码管理器就很难控制知晓范围了，更糟的情况是开源项目把机密信息上传到Github。如何安全的存储这些用户机密信息呢，ASP.NET Core提供SecretManager来管理机密数据。并且Visual Studio还提供了非常便利的工具。从下图可以看出在Web项目点击右键，就可以进入用户机密文件编辑器。
 
 ![](/assets/misc/VSCodeUserSecrets/img/2017-12-19-17-32-12.png)
 
-但是在Visual Studio Code开发环境下如何使用该特性呢？本文将详细介绍。
+但是在Visual Studio Code开发环境下如何使用该特性呢？本文将详细介绍。
 
 # 开始
 ## 创建项目
@@ -31,7 +31,7 @@ dotnet add package Microsoft.Extensions.SecretManager.Tools
 dotnet restore
 ```
 ## 设置机密信息
-我们添加QQ登陆使用到的AppId和AppKey两个参数。
+我们添加QQ登陆使用到的AppId和AppKey两个参数。
 ```
 dotnet user-secrets set connect.qq.appid 123
 dotnet user-secrets set connect.qq.appkey 456
@@ -47,10 +47,10 @@ dotnet user-secrets set connect.qq.appkey 456
 </ItemGroup>
 ```
 
-再执行设置机密参数命令，又遇到缺少`UserSecretsId`的错误。
+再执行设置机密参数命令，又遇到缺少`UserSecretsId`的错误。
 ![](/assets/misc/VSCodeUserSecrets/img/2017-12-19-18-06-30.png)
 
-这个简单，还是打开项目`.csproj`文件，添加以下内容，`UserSecretsId`的值任意设置就好了，这串字符将作为机密文件的目录名存到你的用户目录。
+这个简单，还是打开项目`.csproj`文件，添加以下内容，`UserSecretsId`的值任意设置就好了，这串字符将作为机密文件的目录名存到你的用户目录。
 ```xml
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -61,7 +61,7 @@ dotnet user-secrets set connect.qq.appkey 456
 ![](/assets/misc/VSCodeUserSecrets/img/2017-12-19-18-12-59.png)
 
 ## 使用机密信息
-机密信息并非存与我们项目目录中，如何读取呢？
+机密信息并非存与我们项目目录中，如何读取呢？
 
 打开`Startup.cs`，修改构造函数。  
 > 注意，有些模板生成的项目使用的是`Startup(Configuration configuration)`重载，要更换成下面的内容。
